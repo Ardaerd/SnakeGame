@@ -13,6 +13,7 @@ public class GamePanel extends JPanel implements ActionListener {
     private ImageIcon redCircle;
     private JLabel labels[][];
     private Timer timer;
+    private JLabel apple;
 
     public GamePanel() {
         // Initializing the components
@@ -41,15 +42,17 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         }
 
-        draw();
+    }
 
+    public void addApple() {
+        if (gameModel.isRunning()) {
+            apple = labels[gameModel.getAppleY()][gameModel.getAppleX()];
+            apple.setIcon(redCircle);
+        }
     }
 
     public void draw() {
         if (gameModel.isRunning()) {
-
-            JLabel apple = labels[gameModel.getAppleX()][gameModel.getAppleY()];
-            apple.setIcon(redCircle);
 
             for (int i = 0; i < gameModel.getBodyParts(); i++) {
                 if (i == 0) {
@@ -69,9 +72,16 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (gameModel.isRunning()) {
-            gameModel.move();
-            gameModel.checkApple();
             draw();
+            addApple();
+            if (gameModel.checkApple()) {
+                apple.setIcon(null);
+                addApple();
+                repaint();
+            }
+            gameModel.move();
+
+
         }
         repaint();
     }

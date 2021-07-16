@@ -87,17 +87,21 @@ public class GameModel {
                 y[0] = y[0] + 1;
                 break;
         }
+
+        System.out.println("Apple cordinate: " + "(" + appleX + ", " + appleY + ")");
+        System.out.println("(" + x[0] + ", " + y[0] + ")");
 //        System.out.println(Arrays.toString(x));
 //        System.out.println(Arrays.toString(y));
     }
 
-    public void checkApple() {
+    public boolean checkApple() {
         if ((x[0] == appleX) && (y[0] == appleY)) {
             bodyParts++;
             applesEaten++;
             newApple();
-            System.out.println("true");
+            return true;
         }
+        return false;
     }
 
     public void checkCollisions() {
