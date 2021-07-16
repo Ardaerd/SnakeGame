@@ -77,9 +77,9 @@ public class GamePanel extends JPanel implements ActionListener {
             if (gameModel.checkApple()) {
                 apple.setIcon(null);
                 addApple();
-                repaint();
             }
             gameModel.move();
+            gameModel.checkCollisions();
 
 
         }

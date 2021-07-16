@@ -105,7 +105,14 @@ public class GameModel {
     }
 
     public void checkCollisions() {
-
+        // Checks if head collides with body
+        for (int i = bodyParts; i > 0; i--) {
+            if ((x[0] == x[i]) && (y[0] == y[i])) {
+                System.out.println("(" + x[0] + ", " + y[0] + ")");
+                System.out.println("(" + x[i] + ", " + y[i] + ")");
+                running = false;
+            }
+        }
     }
 
     public void gameOver() {
