@@ -18,7 +18,7 @@ public class GameModel {
     private int[] x;
     private int[] y;
 
-    public GameModel(GamePanel gamePanel) {
+    public GameModel() {
         x = new int[main.GAME_UNITS];
         y = new int[main.GAME_UNITS];
 
@@ -115,6 +115,31 @@ public class GameModel {
                 System.out.println("(" + x[i] + ", " + y[i] + ")");
                 running = false;
             }
+        }
+
+        // Check if head touches right border
+        if (x[0] < 0) {
+            running = false;
+            System.out.println("right border");
+        }
+
+        // Check if head touches left border
+        if (x[0] > GamePanel.width-1) {
+            running = false;
+        }
+
+        // Check if head touches top border
+        if (y[0] < 0) {
+            running = false;
+        }
+
+        // Check if head touches bottom border
+        if (y[0] > GamePanel.height-1) {
+            running = false;
+        }
+
+        if (!running) {
+            GamePanel.timer.stop();
         }
     }
 

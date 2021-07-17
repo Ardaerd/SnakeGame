@@ -12,12 +12,12 @@ public class GamePanel extends JPanel implements ActionListener {
     public static int height = main.SCREEN_HEIGHT/main.UNIT_SIZE;
     private ImageIcon redCircle;
     private JLabel labels[][];
-    private Timer timer;
+    public static Timer timer;
     private JLabel apple;
 
     public GamePanel() {
         // Initializing the components
-        gameModel = new GameModel(this);
+        gameModel = new GameModel();
         redCircle = new ImageIcon("src/Pic/icons8-filled-circle-24.png");
         labels = new JLabel[width][height];
         setFocusable(true);
@@ -92,33 +92,41 @@ public class GamePanel extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
-                    if (gameModel.getDirection() != 'R') {
+                    if (gameModel.getDirection() != 'R' && gameModel.isRunning()) {
                         gameModel.setDirection('L');
                     }
                     break;
 
                 case KeyEvent.VK_RIGHT:
-                    if (gameModel.getDirection() != 'L') {
+                    if (gameModel.getDirection() != 'L' && gameModel.isRunning()) {
                         gameModel.setDirection('R');
                     }
                     break;
 
                 case KeyEvent.VK_UP:
-                    if (gameModel.getDirection() != 'D') {
+                    if (gameModel.getDirection() != 'D' && gameModel.isRunning()) {
                         gameModel.setDirection('U');
                     }
                     break;
 
                 case KeyEvent.VK_DOWN:
-                    if (gameModel.getDirection() != 'U') {
+                    if (gameModel.getDirection() != 'U' && gameModel.isRunning()) {
                         gameModel.setDirection('D');
                     }
                     break;
 
                 case KeyEvent.VK_R:
-                    gameModel.setRunning(true);
-                    gameModel.startGame();
+
                     break;
+
+                case KeyEvent.VK_SPACE:
+                    if (gameModel.isRunning()) {
+                        timer.stop();
+                        gameModel.setRunning(false);
+                    } else {
+                        timer.start();
+                        gameModel.setRunning(true);
+                    }
             }
         }
     }

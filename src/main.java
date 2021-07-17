@@ -10,6 +10,7 @@ public class main {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Snake Game");
+        frame.setLayout(new BorderLayout());
         frame.setContentPane(new GamePanel());
         frame.pack();
         frame.getContentPane().setBackground(Color.BLACK);
