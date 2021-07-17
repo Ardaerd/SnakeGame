@@ -80,8 +80,6 @@ public class GamePanel extends JPanel implements ActionListener {
             }
             gameModel.move();
             gameModel.checkCollisions();
-
-
         }
         repaint();
     }

@@ -19,8 +19,8 @@ public class GameModel {
     private int[] y;
 
     public GameModel(GamePanel gamePanel) {
-        x = new int[GamePanel.width];
-        y = new int[GamePanel.height];
+        x = new int[main.GAME_UNITS];
+        y = new int[main.GAME_UNITS];
 
         for (int i = 0; i < Grid.length; i++) {
             for (int j = 0; j < Grid[i].length; j++) {
