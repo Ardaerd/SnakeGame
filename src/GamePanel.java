@@ -41,13 +41,20 @@ public class GamePanel extends JPanel implements ActionListener {
                 add(label,i,j);
             }
         }
-
     }
 
     public void addApple() {
         if (gameModel.isRunning()) {
             apple = labels[gameModel.getAppleY()][gameModel.getAppleX()];
             apple.setIcon(redCircle);
+
+            if (gameModel.checkApple()) {
+                apple.setIcon(null);
+                addApple();
+                timer.setDelay(main.DELAY);
+                main.DELAY -= 1;
+                System.out.println(main.DELAY);
+            }
         }
     }
 
@@ -74,10 +81,6 @@ public class GamePanel extends JPanel implements ActionListener {
         if (gameModel.isRunning()) {
             draw();
             addApple();
-            if (gameModel.checkApple()) {
-                apple.setIcon(null);
-                addApple();
-            }
             gameModel.move();
             gameModel.checkCollisions();
         }

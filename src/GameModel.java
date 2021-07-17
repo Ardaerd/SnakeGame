@@ -48,15 +48,19 @@ public class GameModel {
 
             for (int i = 0; i < Grid.length; i++) {
                 for (int j = 0; j < Grid[i].length; j++) {
-                    if (Grid[i][j] == 1 && (i != appleX) && (j != appleY) && (Grid[i][j] != 2)) {
+                    if (Grid[i][j] == 1 && (i != appleX) && (j != appleY)) {
                         Grid[i][j] = 0;
-                        check = false;
                     }
                 }
             }
 
             System.out.println("(" + appleX + ", " + appleY + ")");
-            Grid[appleX][appleY] = 1;
+            if ((Grid[appleY][appleX] != 2)) {
+                Grid[appleY][appleX] = 1;
+                check = false;
+            } else {
+                check = true;
+            }
         }
     }
 
@@ -88,10 +92,9 @@ public class GameModel {
                 break;
         }
 
-        System.out.println("Apple cordinate: " + "(" + appleX + ", " + appleY + ")");
-        System.out.println("(" + x[0] + ", " + y[0] + ")");
-//        System.out.println(Arrays.toString(x));
-//        System.out.println(Arrays.toString(y));
+//        System.out.println("Apple cordinate: " + "(" + appleX + ", " + appleY + ")");
+//        System.out.println("(" + x[0] + ", " + y[0] + ")");
+        System.out.println(Arrays.toString(Grid[0]));
     }
 
     public boolean checkApple() {
