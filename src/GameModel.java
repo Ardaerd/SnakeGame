@@ -3,6 +3,7 @@ import javax.swing.text.StyledEditorKit;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class GameModel {
@@ -17,10 +18,12 @@ public class GameModel {
     private int appleY;
     private int[] x;
     private int[] y;
+    private LinkedList<Character> directions;
 
     public GameModel() {
         x = new int[main.GAME_UNITS];
         y = new int[main.GAME_UNITS];
+        directions = new LinkedList<>();
 
         for (int i = 0; i < Grid.length; i++) {
             for (int j = 0; j < Grid[i].length; j++) {
@@ -73,6 +76,10 @@ public class GameModel {
         }
 
         Grid[y[bodyParts]][x[bodyParts]] = 0;
+
+        if (!directions.isEmpty()) {
+            direction = directions.pop();
+        }
 
         switch (direction) {
             case 'R':
@@ -193,5 +200,13 @@ public class GameModel {
 
     public void setRunning(boolean running) {
         this.running = running;
+    }
+
+    public void addDirections(Character chr) {
+        directions.push(chr);
+    }
+
+    public LinkedList<Character> getDirections() {
+        return directions;
     }
 }

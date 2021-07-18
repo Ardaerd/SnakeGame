@@ -93,25 +93,25 @@ public class GamePanel extends JPanel implements ActionListener {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
                     if (gameModel.getDirection() != 'R' && gameModel.isRunning()) {
-                        gameModel.setDirection('L');
+                        gameModel.addDirections('L');
                     }
                     break;
 
                 case KeyEvent.VK_RIGHT:
                     if (gameModel.getDirection() != 'L' && gameModel.isRunning()) {
-                        gameModel.setDirection('R');
+                        gameModel.addDirections('R');
                     }
                     break;
 
                 case KeyEvent.VK_UP:
                     if (gameModel.getDirection() != 'D' && gameModel.isRunning()) {
-                        gameModel.setDirection('U');
+                        gameModel.addDirections('U');
                     }
                     break;
 
                 case KeyEvent.VK_DOWN:
                     if (gameModel.getDirection() != 'U' && gameModel.isRunning()) {
-                        gameModel.setDirection('D');
+                        gameModel.addDirections('D');
                     }
                     break;
 
